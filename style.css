@@ -22,6 +22,29 @@ p {
 	padding-left: 0.5cm;
 	font-weight: bold;
 }
+.tablestyle {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width:80%;
+}
+
+.tdstyle {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.thstyle {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
 
 .fight {
 	font-size: 150%;
@@ -58,10 +81,17 @@ p {
 	background-size: 100% 100%;
 }
 
+.captain {
+	height:90%;
+	width: 20%;
+	padding-left:0.5cm;
+	padding-top:0.5cm;
+}
+
 .stanleycup {
 	position: absolute;
 	width:80%;
-	height: 150%;
+	height: 100%;
 	opacity:0.4;
 	background-image: url("cup.jpg");
 	background-size: 100% 100%;
@@ -77,7 +107,7 @@ p {
 }
 
 .edmonton {
-	color: blue;
+	color: black;
 }
 
 .pittsburgh {
@@ -116,7 +146,7 @@ p {
 .news2 {
 	border: 2px;
 	background-color: white;
-	height: 20%;
+	height: 30%;
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
