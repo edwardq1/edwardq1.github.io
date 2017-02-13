@@ -266,42 +266,29 @@ function longestWords(txt){
 			}
 		}
 	}
-	for (var i = 0; i < array.length; i++){
-		var alreadyIn = false;
-		if(longestWordArray.length == 10){
-			var index = 0;		
-			shortest = longestWordArray[0].length;
-			for(var k = 0; k < longestWordArray.length; k++){
-				if (longestWordArray[k].length < shortest){
-					shortest = longestWordArray[k].length;
-					index = k;
+	array.sort();
+	var length = array.length;
+	for (var i = 0; i < length; i++){
+		var inside = false;
+		if(longestWordArray.length < 10){
+			var largest = 0;
+			for (var k = 0; k < array.length; k++){
+				if(array[largest].length < array[k].length)
+					largest = k;
+		
+			}
+			for (var k = 0; k < longestWordArray.length; k++){
+				if(array[largest].localeCompare(longestWordArray[k]) == 0){
+					array.splice(largest, 1);
+					inside = true;
 				}
-				if (array[i].localeCompare(longestWordArray[k]) == 0)
-					alreadyIn = true;
 			}
-			if (array[i].length > shortest && alreadyIn == false)
-				longestWordArray[index] = array[i];
-		}
-		else{
-			for(var k = 0; k < longestWordArray.length; k++){
-				if (array[i].localeCompare(longestWordArray[k]) == 0)
-					alreadyIn = true;
-			}
-			if (alreadyIn == false)
-				longestWordArray.push(array[i]);	
-		}
-	}
-	longestWordArray = longestWordArray.sort();
-	for (var k = 0; k < longestWordArray.length; k++){
-		for (var i = 0; i < longestWordArray.length; i++){
-			if(i < longestWordArray.length - 1){
-				if(longestWordArray[i+1].length > longestWordArray[i].length){
-					var temp = longestWordArray[i+1];
-					longestWordArray[i+1] = longestWordArray[i];
-					longestWordArray[i] = temp;		
-				}	
+			if (inside == false){
+				longestWordArray.push(array[largest]);
+				array.splice(largest, 1);
 			}
 		}
+
 	}
 	return longestWordArray;
 }
@@ -368,6 +355,7 @@ function frequency(txt){
 			}
 		}
 	}
+	array.sort();
 	for (var i = 0; i < array.length; i++){
 		insideArray = false;
 		for (var x = 0; x < array.length; x++){
