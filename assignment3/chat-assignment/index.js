@@ -7,6 +7,7 @@ var users = [];
 var cookieUsers = [];
 var userColors = [];
 var chatHistory = [];
+var disconnectedUsers = [];
 var ownChatHistory = [];
 var userCount = 0;
 
@@ -28,6 +29,7 @@ io.on('connection', function(socket){
 			justConnected = socket.nickname + " has just reconnected.";
 			time = new Date().toTimeString().substr(0, 8);
 			chat = time + " SERVER: " + justConnected + "<br/>";
+			disconnectedUsers.splice(disconnectedUsers.indexOf(socket.nickname), 1);
 			chatHistory.push(chat);
 			socket.broadcast.emit('new name', {msg: chat, users: users});
 			socket.emit('logged as', socket.nickname);
@@ -63,7 +65,7 @@ io.on('connection', function(socket){
 		}
 		else if (msg.indexOf('/nick') >= 0){
 			newName = msg.replace('/nick ', '');
-			if ((cookieUsers.indexOf(newName) != -1) || (users.indexOf(newName) != -1)){
+			if ((cookieUsers.indexOf(newName) != -1) || (users.indexOf(newName) != -1) || (disconnectedUsers.indexOf(newName) != -1)){
 				time = new Date().toTimeString().substr(0, 8);
 				notSuccessful = time + " SERVER: " + newName + " is already taken.<br/>";
 				chatHistory.push(notSuccessful);
@@ -108,6 +110,7 @@ io.on('connection', function(socket){
 	
 	socket.on('disconnect', function(msg){
 		users.splice(users.indexOf(socket.nickname), 1);
+		disconnectedUsers.push(socket.nickname);
 		time = new Date().toTimeString().substr(0, 8);
 		disconnectMessage = time + " SERVER: " + socket.nickname + " has disconnected from the chat.<br/>"
 		chatHistory.push(disconnectMessage);
