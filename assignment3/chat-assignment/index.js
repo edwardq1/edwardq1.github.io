@@ -65,9 +65,9 @@ io.on('connection', function(socket){
 			newName = msg.replace('/nick ', '');
 			if ((cookieUsers.indexOf(newName) != -1) || (users.indexOf(newName) != -1)){
 				time = new Date().toTimeString().substr(0, 8);
-				notSuccessful = time + " SERVER: " + socket.nickname + newName + " is already taken.<br/>";
+				notSuccessful = time + " SERVER: " + newName + " is already taken.<br/>";
 				chatHistory.push(notSuccessful);
-				io.emit('new name', {msg: notSuccessful, users: users});
+				socket.emit('new name', {msg: notSuccessful, users: users});
 			}
 			else{
 				index = users.indexOf(socket.nickname);
