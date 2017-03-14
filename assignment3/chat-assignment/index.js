@@ -78,6 +78,7 @@ io.on('connection', function(socket){
 				successful = time + " SERVER: " + socket.nickname + " has changed nickname to " + newName + "<br/>";
 				chatHistory.push(successful);
 				socket.nickname = newName;
+				socket.emit('logged as', socket.nickname);
 				userColors[colorIndex] = socket.nickname;
 				io.emit('new name', {msg: successful, users: users})
 			}	
@@ -103,6 +104,7 @@ io.on('connection', function(socket){
 			}
 		}
     });
+	
 	
 	socket.on('disconnect', function(msg){
 		users.splice(users.indexOf(socket.nickname), 1);
