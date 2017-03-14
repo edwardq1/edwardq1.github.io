@@ -1,0 +1,12 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font: 13px Helvetica, Arial; }
+form { float: left; background: mediumslateblue; padding: 3px; width: 80%; height: 7.4%}
+form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+#messageWrap {float:left; border: 1px solid black; display:block; width: 80%; height: 90%; overflow-y: scroll; word-wrap: break-word;}
+#messages {display:table-cell; vertical-align: bottom; width: 100%; height: 600px}
+#users { border: 1px solid black;width: 20%; height: 90%; float: left}
+#main {border: 3px solid black;background-color: ghostwhite;width: 100%; height: 600px}
+#info {float: top; width: 100%}
+#userLogged {background-color: aqua; float: left;width: 80%;}
+#onlineUsers {background-color: aqua; float:left;width: 20%;};
