@@ -21,7 +21,6 @@ app.use(express.static(__dirname + '/public'));
 // listen to 'chat' messages
 io.on('connection', function(socket){
 	socket.emit('get cookie', {name: cookieUsers});
-
 	socket.on('cookie', function(msg){
 		if(msg != ""){
 			socket.nickname = msg;

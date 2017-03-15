@@ -72,13 +72,11 @@ $(function() {
 	
 	socket.on('get cookie', function(msg) {
 		index = -1;
-		for(i = 0; i < msg.name.length; i++){
-			if (getCookie(msg.name[i]) != ""){
-				index = i;
-			}
+		if (getCookie("username") != ""){
+			index = 0;
 		}
 		if (index != -1){
-			socket.emit('cookie', getCookie(msg.name[index]));
+			socket.emit('cookie', getCookie("username"));
 		}
 		else{
 			socket.emit('cookie', "");		
@@ -92,16 +90,16 @@ $(function() {
 	});
 	
 	socket.on('set cookie', function(msg) {
-		if(getCookie(msg) == ""){
-			setCookie(msg, msg);
+		if(getCookie("username") == ""){
+			setCookie("username", msg);
 		}
 		else{
-			name = getCookie(msg);
+			name = getCookie("username");
 		}
 	});
 	
 	socket.on('edit cookie', function(msg) {
-		setCookie(msg.msg, msg.newname);
+		setCookie("username", msg.newname);
 	});
 	
 });
